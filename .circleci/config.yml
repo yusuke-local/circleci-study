@@ -1,8 +1,17 @@
+#version: 2.1
+#jobs:
+#  build:
+#    docker: 
+#      - image: circleci/node:4.8.2 # ジョブのコマンドが実行されるプライマリ コンテナ
+#    steps:
+#      - checkout # プロジェクト ディレクトリ内のコードをチェック アウトします
+#      - run: echo "hello world" # `echo` コマンドを実行します
 version: 2.1
-jobs:
-  build:
-    docker: 
-      - image: circleci/node:4.8.2 # ジョブのコマンドが実行されるプライマリ コンテナ
-    steps:
-      - checkout # プロジェクト ディレクトリ内のコードをチェック アウトします
-      - run: echo "hello world" # `echo` コマンドを実行します
+
+orbs:
+  hello: circleci/hello-build@0.0.5
+
+workflows:
+  "Hello Workflow":
+    jobs:
+      - hello/hello-build
